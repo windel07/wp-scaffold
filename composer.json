@@ -13,5 +13,6 @@
             "name": "Windel Oira",
             "email": "windeloira07@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability": "dev"
 }
