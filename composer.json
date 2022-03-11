@@ -14,5 +14,10 @@
             "email": "windeloira07@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-install-cmd": [
+            "bash installer/install.sh"
+        ]
+    }
 }
