@@ -1,11 +1,12 @@
 {
     "name": "windel07/wp-scaffold",
-    "type": "library",
+    "type": "project",
     "description": "A basic scaffold for WP projects.",
     "homepage": "https://github.com/windel07/wp-scaffold",
     "require": {
         "php": ">=7.4",
-        "vlucas/phpdotenv": "5.*"
+        "wp-cli/wp-cli": "^1.1",
+        "vlucas/phpdotenv": "dev-master"
     },
     "license": "MIT",
     "authors": [
@@ -17,7 +18,7 @@
     "minimum-stability": "dev",
     "scripts": {
         "post-install-cmd": [
-            "bash installer/install.sh"
+            "chmod +x installer/install.sh"
         ]
     }
 }
