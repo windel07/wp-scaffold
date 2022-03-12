@@ -1,0 +1,1 @@
+https://github.com/Idea-Maker-Agency/wordpress/raw/dev/genesis.zip https://github.com/Idea-Maker-Agency/wordpress/raw/dev/genesis-child.zip
