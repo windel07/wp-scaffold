@@ -21,9 +21,18 @@ vendor/bin/wp theme delete --all --force
 
 # Install themes
 for theme in $(cat utils/themes.txt); do
-    vendor/bin/wp theme install $theme --activate
+    name=${theme//"https://github.com/Idea-Maker-Agency/"/""}
+    name=${name//"/archive/refs/heads/dev.zip"/""}
+    
+    wget $theme -O "$name.zip" -q
+
+    vendor/bin/wp theme install "$name.zip" --activate
+
+    mv "project/wp-content/themes/$name-dev" "project/wp-content/themes/$name"
+    rm "$name.zip"
 done
 
+vendor/bin/wp theme activate genesis-child
 vendor/bin/wp theme update genesis
 
 # Setup plugins ---
@@ -45,7 +54,7 @@ for page in $(cat utils/pages.txt); do
 done
 
 # Set homepage
-vendor/bin/wp option update page_on_front 6
+vendor/bin/wp option update page_on_front 7
 
 # Run the server ---
 
