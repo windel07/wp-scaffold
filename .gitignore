@@ -1,6 +1,3 @@
+/project/
 /vendor/
 .env
-
-/project/
-
-!/project/wp-config-template.php
