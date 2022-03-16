@@ -3,10 +3,21 @@
     "type": "project",
     "description": "A basic scaffold for WP projects.",
     "homepage": "https://github.com/windel07/wp-scaffold",
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
     "require": {
         "php": ">=5.6",
-        "wp-cli/wp-cli-bundle": "*",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "johnpbloch/wordpress": "dev-master",
+        "wp-cli/core-command": "^2.0",
+        "wp-cli/config-command": "^2.0",
+        "wp-cli/db-command": "^2.0",
+        "wp-cli/extension-command": "^2.0",
+        "wp-cli/server-command": "^2.0"
     },
     "license": "MIT",
     "authors": [
@@ -17,9 +28,44 @@
     ],
     "minimum-stability": "dev",
     "scripts": {
-        "post-root-package-install": [
-            "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "php -r \"file_exists('project/wp-config.php') || copy('wp-config-template.php', 'wp-config.php');\""
+        "setup-config" : [
+            "php -r \"file_exists('project/wp-config.php') || copy('config.php', 'project/wp-config.php');\"",
+            "vendor/bin/wp config shuffle-salts"
+            
+        ],
+        "setup-db": [
+            "vendor/bin/wp db create"
+        ],
+        "setup-wp": [
+            "vendor/bin/wp core install --url=http://localhost:8000 --title=Test"
+        ],
+        "setup-plugins": [
+            "vendor/bin/wp plugin delete --all",
+            "vendor/bin/wp plugin install elementor --activate"
+        ],
+        "setup-themes": [
+            "vendor/bin/wp theme delete --all --force",
+            "vendor/bin/wp theme install https://github.com/Idea-Maker-Agency/genesis/archive/refs/heads/dev.zip",
+            "vendor/bin/wp theme install https://github.com/Idea-Maker-Agency/genesis-child/archive/refs/heads/dev.zip --activate"
+        ],
+        "serve": [
+            "vendor/bin/wp server --host=localhost --port=8000"
+        ],
+        "post-install-cmd": [
+            "@setup-config",
+            "@setup-db",
+            "@setup-wp",
+            "@setup-plugins",
+            "@setup-themes",
+            "@serve"
         ]
+    },
+    "extra": {
+        "wordpress-install-dir": "project",
+        "installer-paths": {
+            "project/wp-content/plugins/{$name}/": [
+                "wpackagist-plugin/elementor"
+            ]
+        }
     }
 }
