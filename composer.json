@@ -51,7 +51,7 @@
         "serve": [
             "vendor/bin/wp server --host=localhost --port=8000"
         ],
-        "install": [
+        "install-wp": [
             "@setup-config",
             "@setup-db",
             "@setup-wp",
