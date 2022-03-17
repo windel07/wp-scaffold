@@ -36,7 +36,7 @@ $commands = [
 ];
 
 if( $isLocal ) 
-    $commands[] = "wp server --host=localhost --port=8000";
+    $commands[] = "wp server";
 
 # Run commands
 foreach( $commands as $command ) :
