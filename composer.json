@@ -13,6 +13,8 @@
         "php": ">=5.6",
         "vlucas/phpdotenv": "^5.4",
         "johnpbloch/wordpress": "dev-master",
+        "wpackagist-plugin/elementor": ">=3.5.6",
+        "wp-cli/eval-command": "^2.0",
         "wp-cli/core-command": "^2.0",
         "wp-cli/config-command": "^2.0",
         "wp-cli/db-command": "^2.0",
@@ -28,36 +30,11 @@
     ],
     "minimum-stability": "dev",
     "scripts": {
-        "setup-config" : [
-            "php -r \"file_exists('project/wp-config.php') || copy('config.php', 'project/wp-config.php');\"",
-            "vendor/bin/wp config shuffle-salts"
-            
+        "run-installer": [
+            "vendor/bin/wp eval-file installer.php --skip-wordpress"
         ],
-        "setup-db": [
-            "vendor/bin/wp db create"
-        ],
-        "setup-wp": [
-            "vendor/bin/wp core install --url=http://localhost:8000 --title=Test"
-        ],
-        "setup-plugins": [
-            "vendor/bin/wp plugin delete --all",
-            "vendor/bin/wp plugin install elementor --activate"
-        ],
-        "setup-themes": [
-            "vendor/bin/wp theme delete --all --force",
-            "vendor/bin/wp theme install https://github.com/Idea-Maker-Agency/genesis/archive/refs/heads/dev.zip",
-            "vendor/bin/wp theme install https://github.com/Idea-Maker-Agency/genesis-child/archive/refs/heads/dev.zip --activate"
-        ],
-        "serve": [
+        "run-serve": [
             "vendor/bin/wp server --host=localhost --port=8000"
-        ],
-        "install-wp": [
-            "@setup-config",
-            "@setup-db",
-            "@setup-wp",
-            "@setup-plugins",
-            "@setup-themes",
-            "@serve"
         ]
     },
     "extra": {
