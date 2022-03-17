@@ -27,7 +27,7 @@ $commands = [
     "wp config create --dbname=$dbName --dbuser=$dbUser --dbpass=$dbPass --dbhost=$dbHost",
     "wp config shuffle-salts",
     "wp db create",
-    "wp core install --url=$siteURL --title=$siteTitle",
+    "wp core install --url='$siteURL' --title='$siteTitle'",
     "wp plugin delete hello",
     "wp plugin activate elementor",
     "wp theme delete --all --force",
