@@ -10,7 +10,7 @@ $dbUser = isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : null;
 $dbPass = isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : null;
 $dbHost = isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : null;
 
-$siteURL = $isLocal ? "http://localhost:8000" : (isset($_ENV['SITE_URL']) ? $_ENV['SITE_URL'] : null);
+$siteURL = $isLocal ? "http://localhost:8080" : (isset($_ENV['SITE_URL']) ? $_ENV['SITE_URL'] : null);
 $siteTitle = isset($_ENV['SITE_TITLE']) ? $_ENV['SITE_TITLE'] : null;
 
 # Check database configuration
