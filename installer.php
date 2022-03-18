@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
 $dotenv = Dotenv\Dotenv::createImmutable(dirname( __FILE__ ));
 $dotenv->load();
 
@@ -13,32 +15,85 @@ $dbHost = isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : null;
 $siteURL = $isLocal ? "http://localhost:8080" : (isset($_ENV['SITE_URL']) ? $_ENV['SITE_URL'] : null);
 $siteTitle = isset($_ENV['SITE_TITLE']) ? $_ENV['SITE_TITLE'] : null;
 
-# Check database configuration
-if( !$dbName || !$dbUser || !$dbHost) :
-    shell_exec("echo \"Invalid database configuration\"");
-    shell_exec("read");
-# Check site url and title
-elseif( !$siteURL || !$siteTitle ) :
-    shell_exec("echo \"Site url or title cannot be empty\"");
-    shell_exec("read");
+$parentTheme = isset($_ENV['PARENT_THEME']) ? $_ENV['PARENT_THEME'] : null;
+$childTheme = isset($_ENV['CHILD_THEME']) ? $_ENV['CHILD_THEME'] : null;
+
+
+# --- Check .env values --- #
+
+if( !$siteURL && !$siteTitle ) :
+    \cli\line("%RSite title and url cannot be empty.%n");
+elseif( !$parentTheme && !$childTheme ) :
+    \cli\line("%RParent and child theme cannot be empty.%n");
 endif;
 
-$commands = [
-    "wp config create --dbname=$dbName --dbuser=$dbUser --dbpass=$dbPass --dbhost=$dbHost",
-    "wp config shuffle-salts",
-    "wp db create",
-    "wp core install --url='$siteURL' --title='$siteTitle'",
-    "wp plugin delete hello",
-    "wp plugin activate elementor",
-    "wp theme delete --all --force",
-    "wp theme install https://github.com/Idea-Maker-Agency/genesis/archive/refs/heads/dev.zip --insecure",
-    "wp theme install https://github.com/Idea-Maker-Agency/genesis-child/archive/refs/heads/dev.zip --activate --insecure",
-];
 
-if( $isLocal ) 
-    $commands[] = "wp server";
+# --- Generate config --- #
 
-# Run commands
-foreach( $commands as $command ) :
-    echo shell_exec($command);
-endforeach;
+$config = WP_CLI::runcommand("config create --dbname=$dbName --dbuser=$dbUser --dbpass=$dbPass --dbhost=$dbHost --force", [
+    'return' => 'all',
+    'exit_error' => false
+]);
+
+if( !$config->stderr ) :
+    WP_CLI::runcommand("config shuffle-salts");
+
+    # --- Create database --- #
+
+    $db = WP_CLI::runcommand("db create", [
+        'return' => 'all',
+        'exit_error' => false
+    ]);
+
+    if( !$db->stderr ) :
+        # --- Install WP core --- #
+        
+        $install = WP_CLI::runcommand("core install --url=$siteURL --title=\"$siteTitle\"", [
+            'return' => 'all',
+            'exit_error' => false
+        ]);
+        
+        if( !$install->stderr ) :
+            \cli\line("%G$install->stdout%n");
+
+            # --- Setup plugins --- #
+
+            WP_CLI::runcommand("plugin delete hello");
+            WP_CLI::runcommand("plugin activate elementor");
+
+
+            # --- Setup themes --- #
+            
+            WP_CLI::runcommand("theme delete --all --force");
+            WP_CLI::runcommand("theme install $parentTheme --insecure --force");
+            WP_CLI::runcommand("theme install $childTheme --insecure --force --activate");
+
+
+            # --- Setup initial pages --- #
+
+            $pages = WP_CLI::runcommand("post list --post_type=page --format=ids", [
+                'return' => true,
+            ]);
+
+            WP_CLI::runcommand("post delete {$pages} --force");
+
+            $front_page = WP_CLI::runcommand("post create --post_title=Home --post_type=page --post_author=1 --post_status=publish --porcelain", [
+                'return' => true,
+            ]);
+            WP_CLI::runcommand("post create --post_title=About --post_type=page --post_author=1 --post_status=publish");
+            WP_CLI::runcommand("post create --post_title=Contact --post_type=page --post_author=1 --post_status=publish"); 
+
+            WP_CLI::runcommand("option update page_on_front $front_page");
+            
+            if( $isLocal ) :
+                WP_CLI::runcommand("server");
+            endif;
+        else :
+            \cli\line("%R$install->stderr%n");
+        endif;
+    else :
+        \cli\line("%R$db->stderr%n");
+    endif;
+else :
+    \cli\line("%R$config->stderr%n");
+endif;
