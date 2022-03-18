@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d11863083659127e0bd534c57bece65",
+    "content-hash": "c981ad1575b99f1557e07b9d9ec823e1",
     "packages": [
         {
             "name": "composer/installers",
@@ -348,12 +348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "7807cd60887ccad6b2cb03cf92644b98cfd87ad5"
+                "reference": "3526e904466b957ac98a1148cbda4d06709e0f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/7807cd60887ccad6b2cb03cf92644b98cfd87ad5",
-                "reference": "7807cd60887ccad6b2cb03cf92644b98cfd87ad5",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/3526e904466b957ac98a1148cbda4d06709e0f44",
+                "reference": "3526e904466b957ac98a1148cbda4d06709e0f44",
                 "shasum": ""
             },
             "require": {
@@ -389,7 +389,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2022-03-17T05:10:55+00:00"
+            "time": "2022-03-17T22:30:12+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -1746,15 +1746,15 @@
         },
         {
             "name": "wpackagist-plugin/elementor",
-            "version": "3.6.0-beta3",
+            "version": "3.6.0-beta4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elementor/",
-                "reference": "tags/3.6.0-beta3"
+                "reference": "tags/3.6.0-beta4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elementor.3.6.0-beta3.zip"
+                "url": "https://downloads.wordpress.org/plugin/elementor.3.6.0-beta4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
