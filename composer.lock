@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "addb17a46cae7b98d9dcd82ae8ae66f2",
+    "content-hash": "8230d345b6152513d96abaf1a75a6826",
     "packages": [
         {
             "name": "composer/installers",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "b8e490f37773ce64738d391e31ba83f082eb815e"
+                "reference": "75e5ef05436c90ac565a48176cc7465991908352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/b8e490f37773ce64738d391e31ba83f082eb815e",
-                "reference": "b8e490f37773ce64738d391e31ba83f082eb815e",
+                "url": "https://api.github.com/repos/composer/installers/zipball/75e5ef05436c90ac565a48176cc7465991908352",
+                "reference": "75e5ef05436c90ac565a48176cc7465991908352",
                 "shasum": ""
             },
             "require": {
@@ -38,7 +38,8 @@
                 "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-main": "2.x-dev"
-                }
+                },
+                "plugin-modifies-install-path": true
             },
             "autoload": {
                 "psr-4": {
@@ -132,7 +133,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/main"
+                "source": "https://github.com/composer/installers/tree/v2.1.0"
             },
             "funding": [
                 {
@@ -148,7 +149,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-17T07:59:23+00:00"
+            "time": "2022-03-18T12:27:54+00:00"
         },
         {
             "name": "composer/semver",
@@ -297,24 +298,23 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "dev-master",
+            "version": "5.9.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "791215d9f8fb9b8c9949f3993d01c25ebf2a84e1"
+                "reference": "e140b6d496f7286c06470032382a528db64fd7cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/791215d9f8fb9b8c9949f3993d01c25ebf2a84e1",
-                "reference": "791215d9f8fb9b8c9949f3993d01c25ebf2a84e1",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/e140b6d496f7286c06470032382a528db64fd7cf",
+                "reference": "e140b6d496f7286c06470032382a528db64fd7cf",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "dev-master",
+                "johnpbloch/wordpress-core": "5.9.x-dev",
                 "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
-            "default-branch": true,
             "type": "package",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -323,37 +323,37 @@
             "authors": [
                 {
                     "name": "WordPress Community",
-                    "homepage": "https://wordpress.org/about/"
+                    "homepage": "http://wordpress.org/about/"
                 }
             ],
             "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
-            "homepage": "https://wordpress.org/",
+            "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
                 "cms",
                 "wordpress"
             ],
             "support": {
-                "docs": "https://developer.wordpress.org/",
-                "forum": "https://wordpress.org/support/",
+                "forum": "http://wordpress.org/support/",
                 "irc": "irc://irc.freenode.net/wordpress",
-                "issues": "https://core.trac.wordpress.org/",
-                "source": "https://core.trac.wordpress.org/browser"
+                "issues": "http://core.trac.wordpress.org/",
+                "source": "http://core.trac.wordpress.org/browser",
+                "wiki": "http://codex.wordpress.org/"
             },
-            "time": "2022-03-01T15:13:50+00:00"
+            "time": "2022-01-04T21:10:00+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "dev-master",
+            "version": "5.9.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "3526e904466b957ac98a1148cbda4d06709e0f44"
+                "reference": "dee016642854470403039eae4bac1154966e1366"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/3526e904466b957ac98a1148cbda4d06709e0f44",
-                "reference": "3526e904466b957ac98a1148cbda4d06709e0f44",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/dee016642854470403039eae4bac1154966e1366",
+                "reference": "dee016642854470403039eae4bac1154966e1366",
                 "shasum": ""
             },
             "require": {
@@ -361,9 +361,8 @@
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "dev-master"
+                "wordpress/core-implementation": "5.9.x-dev"
             },
-            "default-branch": true,
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -389,7 +388,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2022-03-17T22:30:12+00:00"
+            "time": "2022-03-11T02:50:34+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -1958,15 +1957,15 @@
         },
         {
             "name": "wpackagist-plugin/elementor",
-            "version": "3.6.0-beta4",
+            "version": "3.6.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elementor/",
-                "reference": "tags/3.6.0-beta4"
+                "reference": "tags/3.6.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elementor.3.6.0-beta4.zip"
+                "url": "https://downloads.wordpress.org/plugin/elementor.3.6.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1978,9 +1977,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "johnpbloch/wordpress": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
