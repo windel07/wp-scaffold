@@ -59,7 +59,6 @@ if( !$config->stderr ) :
 
             WP_CLI::runcommand("plugin delete hello");
             WP_CLI::runcommand("plugin activate elementor");
-            WP_CLI::runcommand("plugin activate wordpress-importer");
 
 
             # --- Setup themes --- #
