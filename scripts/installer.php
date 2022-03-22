@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname( __FILE__ ));
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $isLocal = 1 == $_ENV['LOCAL'] ? true : false;
@@ -26,7 +26,6 @@ if( !$siteURL && !$siteTitle ) :
 elseif( !$parentTheme && !$childTheme ) :
     \cli\line("%RParent and child theme cannot be empty.%n");
 endif;
-
 
 # --- Generate config --- #
 
@@ -60,6 +59,7 @@ if( !$config->stderr ) :
 
             WP_CLI::runcommand("plugin delete hello");
             WP_CLI::runcommand("plugin activate elementor");
+            WP_CLI::runcommand("plugin activate wordpress-importer");
 
 
             # --- Setup themes --- #

@@ -33,7 +33,7 @@
     "minimum-stability": "dev",
     "scripts": {
         "run-installer": [
-            "vendor/bin/wp eval-file installer.php --skip-wordpress"
+            "vendor/bin/wp eval-file scripts/installer.php --skip-wordpress"
         ],
         "run-server": [
             "vendor/bin/wp server"
